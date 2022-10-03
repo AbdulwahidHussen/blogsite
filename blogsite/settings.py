@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,12 +44,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogApp.apps.BlogappConfig',
     'django.contrib.humanize',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.middleware.common.CommonMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -104,8 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -116,76 +120,34 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_L10N = True
-
 USE_TZ = True
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+
+
+
+
+
+
+
+
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 else:
-    STATIC_ROOT = [os.path.join(BASE_DIR, 'static'),]
-
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') ##specify static roo
+#STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = BASE_DIR / 'media'
 #django_heroku.settings(locals())
 django_heroku.settings(locals(), staticfiles=False)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 
 
 #settings.py
-
-LOGGING = {
-
-     'version': 1,
-
-     'disable_existing_loggers': False,
-
-     'handlers': {
-
-         'console': {
-
-             'class': 'logging.StreamHandler',
-
-         },
-
-        'file': {
-
-            'level': 'DEBUG',
-
-            'class': 'logging.FileHandler',
-
-            'filename': 'log.django',
-
-        },
-
-     },
-
-     'loggers': {
-
-         'django': {
-
-             'handlers': ['console','file'],
-
-             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-
-         },
-
-     },
-
-}

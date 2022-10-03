@@ -19,6 +19,8 @@ context = {
     'category_list_limited' : category_list[:]
 }
 #login
+def vv(request):
+    return HttpResponse('fffffffffffffffff')
 def login_user(request):
     logout(request)
     resp = {"status":'failed','msg':''}

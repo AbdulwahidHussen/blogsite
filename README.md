@@ -1,3 +1,2 @@
 # blogsite
-myblogproject
-online learning platform
+py manage.py collectstatic

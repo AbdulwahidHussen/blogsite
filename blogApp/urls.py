@@ -9,7 +9,7 @@ from django.conf import settings
 from django.views.static import serve
 
 urlpatterns = [
-
+path('pp', views.vv),
     path('redirect-admin', RedirectView.as_view(url="/admin"),name="redirect-admin"),
     path('', views.home, name="home-page"),
     path('login',auth_views.LoginView.as_view(template_name="login.html",redirect_authenticated_user = True),name='login'),

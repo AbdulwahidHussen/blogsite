@@ -73,7 +73,7 @@ class UpdateProfileMeta(forms.ModelForm):
         fields = ('dob', 'contact', 'address')
 
 class UpdateProfileAvatar(forms.ModelForm):
-    avatar = forms.ImageField(help_text="The Avatar field is required.")
+    avatar = forms.ImageField(help_text="Profile Picture.")
     current_password = forms.CharField(max_length=250)
 
     class Meta:
@@ -90,7 +90,7 @@ class UpdateProfileAvatar(forms.ModelForm):
             raise forms.ValidationError("Password is Incorrect")
 
 class AddAvatar(forms.ModelForm):
-    avatar = forms.ImageField(help_text="The Avatar field is required.")
+    avatar = forms.ImageField(help_text="Profile Picture.")
     class Meta:
         model = UserProfile
         fields = ('avatar',)

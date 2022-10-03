@@ -41,7 +41,7 @@
                 <ul class="navbar-nav d-flex flex-row">
                     {% if user.id %}
                     <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link" href="{% url 'post-mgt' %}">Posts</a>
+                        <a class="nav-link" href="{% url 'post-mgt' %}">My Posts</a>
                     </li>
                     {% if user.profile.user_type == 1 %}
                     <li class="nav-item me-3 me-lg-0">

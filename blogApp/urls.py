@@ -4,7 +4,12 @@ from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
 
+from django.conf import settings
+
+from django.views.static import serve
+
 urlpatterns = [
+
     path('redirect-admin', RedirectView.as_view(url="/admin"),name="redirect-admin"),
     path('', views.home, name="home-page"),
     path('login',auth_views.LoginView.as_view(template_name="login.html",redirect_authenticated_user = True),name='login'),

@@ -12,11 +12,11 @@ from blogApp.models import UserProfile,Category, Post
 
 from blogApp.forms import UserRegistration, UpdateProfile, UpdateProfileMeta, UpdateProfileAvatar, SaveCategory, SavePost, AddAvatar
 
-category_list = Category.objects.exclude(status = 2).all()
+category_list = Category.objects.all()
 context = {
     'page_title' : 'Simple Blog Site',
     'category_list' : category_list,
-    'category_list_limited' : category_list[:3]
+    'category_list_limited' : category_list[:]
 }
 #login
 def login_user(request):
